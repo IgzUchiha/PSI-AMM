@@ -21,10 +21,10 @@ describe('Token', () => {
   })
 
   describe('Deployment', () => {
-    const name = 'Dapp University'
-    const symbol = 'DAPP'
+    const name = 'Psichedelic'
+    const symbol = 'PSI'
     const decimals = '18'
-    const totalSupply = tokens('1000000')
+    const totalSupply = tokens('1000000000')
 
     it('has correct name', async () => {
       expect(await token.name()).to.equal(name)
