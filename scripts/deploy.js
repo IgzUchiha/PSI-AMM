@@ -7,16 +7,22 @@
 const hre = require("hardhat");
 
 async function main() {
-  const NAME = 'Psichedelic'
-  const SYMBOL = 'PSI'
-  const MAX_SUPPLY = '1000000000'
-
+  
   // Deploy Token
   const Token = await hre.ethers.getContractFactory('Token')
-  let token = await Token.deploy(NAME, SYMBOL, MAX_SUPPLY)
+  let psi = await Token.deploy('Psichedelic', 'PSI', '1000000000')
+  await psi.deployed()
+  console.log(`PSI Token deployed to: ${psi.address}\n`)
 
-  await token.deployed()
-  console.log(`Token deployed to: ${token.address}\n`)
+  const usd = await Token.deploy('USD Token', 'USD', '1000000000')
+  await usd.deployed()
+  console.log(`USD Token deployed to: ${usd.address}\n`)
+
+  const AMM = await hre.ethers.getContractFactory('AMM')
+  const amm = await AMM.deploy(psi.address, usd.address)
+
+
+  console.log(`AMM cntract deployed to ${amm.address}\n`)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

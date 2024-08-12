@@ -30,7 +30,7 @@ describe('AMM', () => {
     // Deploy Token
     const Token = await ethers.getContractFactory('Token')
     token1 = await Token.deploy('Psichedelic', 'PSI', '1000000000') // 1 Billion Tokens
-    token2 = await Token.deploy('USD Token', 'USD', '1000000') // 1 Billion Tokens
+    token2 = await Token.deploy('USD Token', 'USD', '1000000000') // 1 Billion Tokens
 
     // Send tokens to liquidity provider
     let transaction = await token1.connect(deployer).transfer(liquidityProvider.address, tokens(100000))
